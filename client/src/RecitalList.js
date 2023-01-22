@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import RecitalCard from './RecitalCard'
 
 const RecitalList = () => {
   const [recitals, setRecitals] = useState([])
@@ -6,13 +7,18 @@ const RecitalList = () => {
   useEffect(() => {
     fetch("/recitals")
     .then(r => r.json())
-    .then(data => console.log(data))
+    .then(data => setRecitals(data))
     .catch(error => console.log(error))
   }, [])
+
+  const recitalList = recitals.map(recital => (
+    <RecitalCard key={recital.id} recital={recital}/>
+  ))
 
   return (
     <div>
       <h1>Recital List Here</h1>
+      {recitalList}
     </div>
   )
 }
