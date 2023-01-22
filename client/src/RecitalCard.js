@@ -1,10 +1,15 @@
 import React from 'react'
 
 const RecitalCard = ({recital}) => {
+
+  const handleBuyTicketsBtn = () => {
+
+  }
+
   return (
     <div>
       <h1>{recital.title}</h1>
-      <p>{recital.description}</p>
+      <button onClick={handleBuyTicketsBtn}>Buy Tickets</button>
     </div>
   )
 }
