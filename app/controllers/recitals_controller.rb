@@ -6,14 +6,30 @@ class RecitalsController < ApplicationController
   end
 
   def show
-    recital = Recital.find_by(id: params[:id])
-    if recital
-      render json: recital
-    else
-      render json: { error: "Recital not found" }, status: :not_found
-    end
+    recital = Recital.find(params[:id])
+    render json: recital, status: :ok
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {message: error.message}
   end
 
+  def create
+    recital = Recital.create(recital_params)
+    render json: recital, status: :created
+  end
+
+  def update
+    recital = Recital.find(params[:id])
+    recital.update(recital_params)
+    render json: recital, status: :accepted
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {message: error.message}
+  end
+
+  def destroy
+
+  end
+
+  
   private
 
   def recital_params
