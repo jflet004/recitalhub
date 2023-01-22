@@ -21,12 +21,18 @@ class RecitalsController < ApplicationController
     recital = Recital.find(params[:id])
     recital.update(recital_params)
     render json: recital, status: :accepted
+    
   rescue ActiveRecord::RecordNotFound => error
     render json: {message: error.message}
   end
-
+  
   def destroy
-
+    recital = Recital.find(params[:id])
+    recital.destroy
+    head :no_content
+    
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {message: error.message}
   end
 
   
