@@ -1,0 +1,2 @@
+class Recital < ApplicationRecord
+end

@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+r1 = Recital.create(title: "Piano", description: "Students play piano infront of strangers")
+r2 = Recital.create(title: "Guitar", description: "Students play guitar infront of parents")
