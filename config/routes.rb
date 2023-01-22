@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :students
+  resources :users
+  resources :tickets
   resources :recitals
   get "/recitals", to: "recitals#index"
   get "/recitals/:id", to: "recitals#show"

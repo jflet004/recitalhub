@@ -6,20 +6,18 @@ const RecitalList = () => {
 
   useEffect(() => {
     fetch("/recitals")
-    .then(r => r.json())
-    .then(data => setRecitals(data))
-    .catch(error => console.log(error))
+      .then(r => r.json())
+      .then(data => setRecitals(data))
+      .catch(error => console.log(error))
   }, [])
 
-  const recitalList = recitals.map(recital => (
-    <RecitalCard key={recital.id} recital={recital}/>
-  ))
-
   return (
-    <div>
+    <ul>
       <h1>Recital List Here</h1>
-      {recitalList}
-    </div>
+      {recitals.map(recital => (
+          <RecitalCard key={recital.id} recital={recital} />
+      ))}
+    </ul>
   )
 }
 
