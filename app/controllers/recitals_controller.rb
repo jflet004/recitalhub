@@ -14,14 +14,18 @@ class RecitalsController < ApplicationController
 
   def create
     recital = Recital.create(recital_params)
-    render json: recital, status: :created
+    if recital.valid?
+      render json: recital, status: :created
+    else
+      render json: { errors: recital.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def update
     recital = Recital.find(params[:id])
     recital.update(recital_params)
     render json: recital, status: :accepted
-    
+
   rescue ActiveRecord::RecordNotFound => error
     render json: {message: error.message}
   end
