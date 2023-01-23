@@ -1,18 +1,11 @@
 class TicketsController < ApplicationController
 
-  # def create
-  #   ticket = Ticket.create(ticket_params)
-  #   render json: ticket, status: :created
-  # end
+  def create
 
-  # def update
+  end
 
-  # end
+  def update
 
-  # private
-
-  # def ticket_params
-  #   params.permit(:user_id, :recital_id, :price, :quantity)
-  # end
+  end
 
 end
