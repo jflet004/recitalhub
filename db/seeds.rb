@@ -5,6 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Recital.destroy_all
+User.destroy_all
+Student.destroy_all
+Ticket.destroy_all
+
+puts "Seeding!"
 
 r1 = Recital.create(title: "Piano", description: "Students play piano infront of strangers")
 r2 = Recital.create(title: "Guitar", description: "Students play guitar infront of parents")
+
+u1 = User.create(username: "Jose", password_digest: "1234")
+
+s1 = Student.create(name: "Batboy", age: 3)
+
+Ticket.create(recital_id: r1.id, user_id: u1.id, price: 23, quantity:2)
+
+puts "Done seeding!"
