@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const NewRecitalForm = ({ addRecital }) => {
-  
+
   const [errors, setErrors] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
@@ -10,7 +10,7 @@ const NewRecitalForm = ({ addRecital }) => {
 
   const handleChange = e => {
     const { name, value } = e.target
-    setFormData({...formData, [name]: value})
+    setFormData({ ...formData, [name]: value })
   }
 
   const handleSubmit = e => {
@@ -22,13 +22,13 @@ const NewRecitalForm = ({ addRecital }) => {
       },
       body: JSON.stringify(formData)
     })
-    .then(r => {
-      if(r.ok) {
-        r.json().then(addRecital)
-      } else {
-        r.json().then(data => setErrors(data.errors.map(error => `${error}`)))
-      }
-    })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(data => console.log(data))
+        } else {
+          r.json().then(data => setErrors(data.errors.map(error => `${error}`)))
+        }
+      })
   }
 
   return (
@@ -40,17 +40,17 @@ const NewRecitalForm = ({ addRecital }) => {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          />
+        />
         <label>Description</label>
         <input
           type="text"
           name="description"
           value={formData.description}
           onChange={handleChange}
-          />
+        />
         <input type="submit" value="Add Recital" />
       </form>
-      <br/>
+      <br />
       {errors ? errors.map(e => <div>{e}</div>) : null}
     </div>
   )

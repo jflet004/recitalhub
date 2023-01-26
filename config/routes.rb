@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   #Custom Routes
 
+  # post "/recitals/add", to: "recitals#create"
 
   # get "/recitals", to: "recitals#index"
   # get "/recitals/:id", to: "recitals#show"
