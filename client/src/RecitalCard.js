@@ -1,16 +1,16 @@
 import React from 'react'
 import BuyTickets from './BuyTickets'
 
-const RecitalCard = ({recital}) => {
-  
-  
+const RecitalCard = ({ recital }) => {
+
+
   const handleBuyTicketsBtn = () => {
     fetch(`/recitals/${recital.id}`)
-    .then(r => r.json())
-    .then(data => (
-      <BuyTickets key={data.id} data={data} />
-    ))
-    .catch(error => console.log(error))
+      .then(r => r.json())
+      .then(data => (
+        <BuyTickets key={data.id} data={data} />
+      ))
+      .catch(error => console.log(error))
   }
 
 

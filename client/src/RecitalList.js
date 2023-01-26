@@ -4,7 +4,7 @@ import RecitalCard from './RecitalCard'
 const RecitalList = () => {
   const [recitals, setRecitals] = useState([])
   const [errors, setErrors] = useState(false)
-
+  console.log(recitals)
   useEffect(() => {
     fetch("/recitals")
       .then(r => {

@@ -24,7 +24,7 @@ const NewRecitalForm = ({ addRecital }) => {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(data => console.log(data))
+          r.json().then(addRecital)
         } else {
           r.json().then(data => setErrors(data.errors.map(error => `${error}`)))
         }
