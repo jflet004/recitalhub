@@ -9,9 +9,8 @@ const RecitalList = () => {
     fetch("/recitals")
       .then(r => {
         if (r.ok) {
-          r.json().then(data => setRecitals(data))
-        }
-        else {
+          r.json().then(setRecitals)
+        } else {
           r.json().then(data => setErrors(data.error))
         }
       })
@@ -21,7 +20,7 @@ const RecitalList = () => {
     <RecitalCard key={recital.id} recital={recital} />
   ))
 
-  if(errors) return <h1>{errors}</h1>
+  if (errors) return <h1>{errors}</h1>
 
   return (
     <ul>
