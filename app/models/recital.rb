@@ -10,6 +10,10 @@ class Recital < ApplicationRecord
     self.tickets.sum{|ticket| ticket.quantity}
   end
 
+  def tickets_left
+    self.capacity - self.tickets_sold
+  end
+
   def add_student(student_name)
     student = Student.find_by(name: student_name)
     self.students << student
@@ -17,6 +21,10 @@ class Recital < ApplicationRecord
 
   def students_performing
     self.students.map{|student| student.name}
+  end
+
+  def update_capacity(number)
+    self.update(capacity:number)
   end
 
 end

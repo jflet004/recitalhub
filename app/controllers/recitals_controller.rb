@@ -31,7 +31,7 @@ class RecitalsController < ApplicationController
   private
 
   def recital_params
-    params.permit(:title, :description)
+    params.permit(:title, :description, :tickets_left, :capacity)
   end
 
 end
