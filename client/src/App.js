@@ -3,8 +3,9 @@ import { Routes, Route } from "react-router-dom"
 import NavBar from "./NavBar";
 import Home from "./Home";
 import RecitalList from "./RecitalList";
-import BuyTickets from "./BuyTickets";
 import NewRecitalForm from "./NewRecitalForm";
+import BuyTickets from "./BuyTickets";
+import ProfilePage from "./ProfilePage";
 import './App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
         <Route path="/recitals/:id" element={<BuyTickets />} />
         <Route path="/recitals/add" element={<NewRecitalForm />} />
+        <Route path="/users/:id" element={<ProfilePage />} />
       </Routes>
     </div>
   );

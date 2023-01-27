@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import BuyTickets from './BuyTickets'
+import React from 'react'
 import RecitalCard from './RecitalCard'
 
 const RecitalList = ({ recitals }) => {
