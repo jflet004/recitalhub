@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :students, only: [:index]
   resources :users, only: [:show, :create]
-  resources :tickets, only: [:create, :update]
+  resources :tickets, only: [:index, :create, :update]
   resources :recitals
 
   #Custom Routes

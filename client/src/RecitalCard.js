@@ -1,23 +1,15 @@
 import React from 'react'
-import BuyTickets from './BuyTickets'
+import { Link } from 'react-router-dom'
+// import BuyTickets from './BuyTickets'
 
 const RecitalCard = ({ recital }) => {
-
-
-  const handleBuyTicketsBtn = () => {
-    fetch(`/recitals/${recital.id}`)
-      .then(r => r.json())
-      .then(data => (
-        <BuyTickets key={data.id} data={data} />
-      ))
-      .catch(error => console.log(error))
-  }
-
-
+  console.log(recital)
+  const { id, title, description, tickets_left } = recital
   return (
     <div>
-      <h1>{recital.title}</h1>
-      <button onClick={handleBuyTicketsBtn}>Buy Tickets</button>
+      <h1>{title}</h1>
+      <p>{tickets_left} tickets left</p>
+      <Link to={`/recitals/${id}`}> <h3>Buy Tickets</h3> </Link>
     </div>
   )
 }

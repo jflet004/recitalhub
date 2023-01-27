@@ -19,6 +19,6 @@ u1 = User.create(username: "Jose", password_digest: "1234")
 
 s1 = Student.create(name: "Batboy", age: 3)
 
-Ticket.create(recital_id: r1.id, user_id: u1.id, price: 23, quantity:2)
+Ticket.create(price: 23, quantity:1)
 
 puts "Done seeding!"

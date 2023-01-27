@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import BuyTickets from './BuyTickets'
 import RecitalCard from './RecitalCard'
 
-const RecitalList = () => {
-  const [recitals, setRecitals] = useState([])
-  const [errors, setErrors] = useState(false)
-  console.log(recitals)
-  useEffect(() => {
-    fetch("/recitals")
-      .then(r => {
-        if (r.ok) {
-          r.json().then(setRecitals)
-        } else {
-          r.json().then(data => setErrors(data.error))
-        }
-      })
-  }, [])
+const RecitalList = ({ recitals }) => {
+
 
   const recitalList = recitals.map(recital => (
     <RecitalCard key={recital.id} recital={recital} />
   ))
-
-  if (errors) return <h1>{errors}</h1>
 
   return (
     <ul>
