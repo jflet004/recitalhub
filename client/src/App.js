@@ -6,6 +6,7 @@ import RecitalList from "./RecitalList";
 import NewRecitalForm from "./NewRecitalForm";
 import BuyTickets from "./BuyTickets";
 import ProfilePage from "./ProfilePage";
+import SignUp from "./SignUp";
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/recitals/:id" element={<BuyTickets />} />
         <Route path="/recitals/add" element={<NewRecitalForm />} />
         <Route path="/users/:id" element={<ProfilePage />} />
+        <Route path="/users/new" element={<SignUp />} />
       </Routes>
     </div>
   );
