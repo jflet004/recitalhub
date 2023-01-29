@@ -17,11 +17,11 @@ class RecitalsController < ApplicationController
     render json: recital, status: :created
   end
 
-  def update
-    recital = Recital.find(params[:id])
-    recital.update!(recital_params)
-    render json: recital, status: :accepted
-  end
+  # def update
+  #   recital = Recital.find(params[:id])
+  #   recital.update!(recital_params)
+  #   render json: recital, status: :accepted
+  # end
   
   def destroy
     recital = Recital.find(params[:id])
