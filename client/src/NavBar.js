@@ -9,12 +9,8 @@ const NavBar = ({ currentUser, updateUser }) => {
     fetch('/logout', {
       method: "DELETE"
     })
-    .then(r => {
-      if(r.ok) {
-        updateUser(false)
-        navigate('/login')
-      }
-    })
+      updateUser(false)
+      navigate('/login')
   }
   
   return (

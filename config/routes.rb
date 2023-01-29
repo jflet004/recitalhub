@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
   
   resources :students, only: [:index]
-  resources :users, only: [:show, :create]
+  resources :users, only: [:index, :show, :create]
   resources :tickets, only: [:index, :create, :update]
   resources :recitals
 
   #Custom Routes
+  post '/login', to: "sessions#create"
+  delete '/logout', to: "sessions#destroy"
 
-  # post "/recitals/add", to: "recitals#create"
-
-  # get "/recitals", to: "recitals#index"
-  # get "/recitals/:id", to: "recitals#show"
 
 
 

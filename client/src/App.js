@@ -28,6 +28,7 @@ function App() {
 
   const updateUser = user => {
     setUser(user)
+    console.log(user)
   }
 
   if (errors) return <h1>{errors}</h1>
