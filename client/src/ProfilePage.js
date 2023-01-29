@@ -20,7 +20,7 @@ const ProfilePage = () => {
           r.json().then(data => setErrors(data.error))
         }
       })
-  }, [])
+  }, [params.id])
 
   if (loading) return <h1>Loading</h1>
   if (errors) return <h1>{errors}</h1>

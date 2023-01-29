@@ -8,6 +8,7 @@ import BuyTickets from "./BuyTickets";
 import ProfilePage from "./ProfilePage";
 import SignUp from "./SignUp";
 import './App.css';
+import Login from "./Login";
 
 function App() {
   const [recitals, setRecitals] = useState([])
@@ -35,8 +36,9 @@ function App() {
         <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
         <Route path="/recitals/:id" element={<BuyTickets />} />
         <Route path="/recitals/add" element={<NewRecitalForm />} />
-        <Route path="/users/:id" element={<ProfilePage />} />
         <Route path="/users/new" element={<SignUp />} />
+        <Route path="/users/:id" element={<ProfilePage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

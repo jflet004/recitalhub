@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const SignUp = () => {
-
+const Login = () => {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -20,7 +19,7 @@ const SignUp = () => {
       password
     }
 
-    fetch('/users', {
+    fetch('/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +32,8 @@ const SignUp = () => {
         } else {
           r.json().then(data => {
             console.log(data)
-            setErrors(data.errors)})
+            setErrors(data.errors)
+          })
         }
       })
   }
@@ -47,21 +47,21 @@ const SignUp = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
-        <input 
+        <input
           type='text'
           name='username'
-          value={username} 
+          value={username}
           onChange={handleChange} />
         <label>Password</label>
         <input type='password'
           name='password'
           value={password}
           onChange={handleChange} />
-        <input type='submit' value='Sign up' />
+        <input type='submit' value='Login' />
       </form>
       {errors ? errors.map(error => <div> {error} </div>) : null}
     </div>
   )
 }
 
-export default SignUp
+export default Login
