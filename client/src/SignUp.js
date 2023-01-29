@@ -31,7 +31,7 @@ const SignUp = () => {
         if (r.ok) {
           r.json().then(user => navigate(`/users/${user.id}`))
         } else {
-          r.json().then(data => setErrors(Object.entries(data.errors)))
+          r.json().then(data => console.log(data))
         }
       })
   }
@@ -57,7 +57,7 @@ const SignUp = () => {
           onChange={handleChange} />
         <input type='submit' value='Sign up' />
       </form>
-      {errors ? errors.map(error => <div> {error[0]} {error[1]} </div>) : null}
+      {/* {errors ? errors.map(error => <div> {error[0]} {error[1]} </div>) : null} */}
     </div>
   )
 }

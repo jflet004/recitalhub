@@ -7,12 +7,8 @@ class Recital < ApplicationRecord
   has_many :users, through: :tickets
 
   def purchase_ticket(price,qty)
-    # if self.tickets_left > 0 
       ticket = Ticket.create(price:price, quantity:qty, recital_id: self.id, user_id: 3)
       self.tickets << ticket
-    # else
-    #   return "Sold Out!"
-    # end
   end
 
   def tickets_sold
