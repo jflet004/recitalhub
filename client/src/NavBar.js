@@ -17,10 +17,10 @@ const NavBar = ({ currentUser, updateUser }) => {
     <div className='navigation-bar'>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/recitals">Upcoming Recitals</NavLink>
-      <NavLink to="/recitals/add">Add Recital</NavLink>
+      <NavLink to="/recitals/new">Add Recital</NavLink>
       <NavLink to="/users/new">Signup</NavLink>
       <NavLink to="/login">Login</NavLink>
-      {currentUser ? <NavLink to={"/users/:id"}>My Profile</NavLink> : null}
+      {currentUser ? <NavLink to={"/me"}>My Profile</NavLink> : null}
       {currentUser ? <button onClick={handleLogoutClick}>Logout</button> : null}
     </div>
   )

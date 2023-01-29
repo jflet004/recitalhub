@@ -28,11 +28,24 @@ function App() {
 
   const updateUser = user => {
     setUser(user)
-    console.log(user)
   }
 
-  if (errors) return <h1>{errors}</h1>
+  const addRecital = recital => setRecitals(active => [...active, recital])
 
+  const updateRecital = selectedRecital => setRecitals(active => {
+    return active.map(recital => {
+      if(recital.id === selectedRecital.id) {
+        return selectedRecital
+      } else {
+        return recital
+      }
+    })
+  })
+
+  const deleteRecital = id => setRecitals(active => active.filter(recital => recital.id !== id))
+
+  if (errors) return <h1>{errors}</h1>
+  console.log(`errors?: ${errors}`)
 
   return (
     <div className="App">
@@ -40,10 +53,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
-        <Route path="/recitals/:id" element={<BuyTickets />} />
-        <Route path="/recitals/add" element={<NewRecitalForm />} />
+        <Route path="/recitals/:id" element={<BuyTickets deleteRecital={deleteRecital} />} />
+        <Route path="/recitals/new" element={<NewRecitalForm addRecital={addRecital} />} />
         <Route path="/users/new" element={<SignUp updateUser={updateUser} />} />
-        {/* <Route path="/users/:id" element={<ProfilePage updateUser={updateUser} currentUser={user} />} /> */}
+        <Route path="/me" element={<ProfilePage updateUser={updateUser} currentUser={user} />} />
         <Route path="/login" element={<Login updateUser={updateUser} />} />
       </Routes>
     </div>

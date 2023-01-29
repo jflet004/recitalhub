@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const NewRecitalForm = ({ addRecital }) => {
 
@@ -7,6 +8,7 @@ const NewRecitalForm = ({ addRecital }) => {
     title: "",
     description: "",
   })
+  const navigate = useNavigate()
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -15,7 +17,7 @@ const NewRecitalForm = ({ addRecital }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetch("/recitals", {
+    fetch("/recitals/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -25,6 +27,7 @@ const NewRecitalForm = ({ addRecital }) => {
       .then(r => {
         if (r.ok) {
           r.json().then(addRecital)
+          navigate('/recitals')
         } else {
           r.json().then(data => setErrors(data.errors))
         }
