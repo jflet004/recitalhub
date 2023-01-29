@@ -24,10 +24,6 @@ class Recital < ApplicationRecord
     self.students << student
   end
 
-  # def students_performing
-  #   self.students.map{|student| student.name}
-  # end
-
   def update_capacity(number)
     self.update(capacity:number)
   end

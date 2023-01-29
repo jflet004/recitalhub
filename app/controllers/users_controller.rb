@@ -7,8 +7,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    user = User.find(params[:id])
-    render json: user, include: ['tickets', 'tickets.recital'], status: :ok
+    render json: current_user, include: ['tickets', 'tickets.recital'], status: :ok
   end
 
   def create

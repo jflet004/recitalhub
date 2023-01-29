@@ -1,5 +1,5 @@
 class RecitalsController < ApplicationController
-  # skip_before_action :authenticate_user
+  skip_before_action :authenticate_user, only: [:create]
   before_action :is_authorized?, only: [:create]
 
   def index
