@@ -11,6 +11,7 @@ import './App.css';
 import Login from "./Login";
 
 function App() {
+  const [user, setUser] = useState(false)
   const [recitals, setRecitals] = useState([])
   const [errors, setErrors] = useState(false)
 
@@ -25,20 +26,24 @@ function App() {
       })
   }, [])
 
+  const updateUser = user => {
+    setUser(user)
+  }
+
   if (errors) return <h1>{errors}</h1>
 
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar currentUser={user} updateUser={updateUser}  />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
         <Route path="/recitals/:id" element={<BuyTickets />} />
         <Route path="/recitals/add" element={<NewRecitalForm />} />
-        <Route path="/users/new" element={<SignUp />} />
-        <Route path="/users/:id" element={<ProfilePage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/users/new" element={<SignUp updateUser={updateUser} />} />
+        {/* <Route path="/users/:id" element={<ProfilePage updateUser={updateUser} currentUser={user} />} /> */}
+        <Route path="/login" element={<Login updateUser={updateUser} />} />
       </Routes>
     </div>
   );

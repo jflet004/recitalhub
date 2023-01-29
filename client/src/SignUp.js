@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const SignUp = () => {
+const SignUp = ({ updateUser }) => {
 
   const navigate = useNavigate()
 
@@ -29,10 +29,13 @@ const SignUp = () => {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(user => navigate(`/users/${user.id}`))
+          r.json().then(user => {
+            updateUser(user)
+            navigate(`/users/${user.id}`)
+          })
         } else {
           r.json().then(data => {
-            console.log(data)
+            console.log(data.errors)
             setErrors(data.errors)})
         }
       })
@@ -59,7 +62,7 @@ const SignUp = () => {
           onChange={handleChange} />
         <input type='submit' value='Sign up' />
       </form>
-      {errors ? errors.map(error => <div> {error} </div>) : null}
+      {/* {errors ? <div> {errors} </div> : null} */}
     </div>
   )
 }

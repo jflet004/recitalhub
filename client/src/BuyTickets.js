@@ -27,7 +27,7 @@ const BuyTickets = () => {
   const handleBuyClick = () => console.log(`Purchasing ${quantity} tickets`)
 
   if (loading) return <h1>LOADING...</h1>
-  if (errors) return <h1>{errors}</h1>
+  // if (errors) return <h1>{errors}</h1>
 
   const { title, description, students } = recital
   const studentList = students.map(student => (<li key={student.id}>{student.name}</li>))

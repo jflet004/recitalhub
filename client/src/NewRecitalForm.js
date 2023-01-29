@@ -26,7 +26,7 @@ const NewRecitalForm = ({ addRecital }) => {
         if (r.ok) {
           r.json().then(addRecital)
         } else {
-          r.json().then(data => setErrors(data.errors.map(error => `${error}`)))
+          r.json().then(data => setErrors(data.errors))
         }
       })
   }
@@ -51,7 +51,7 @@ const NewRecitalForm = ({ addRecital }) => {
         <input type="submit" value="Add Recital" />
       </form>
       <br />
-      {errors ? errors.map(e => <div>{e}</div>) : null}
+      {/* {errors ? errors.map(e => <div>{e}</div>) : null} */}
     </div>
   )
 }

@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 // import BuyTickets from './BuyTickets'
 
 const RecitalCard = ({ recital }) => {
-  console.log(recital)
+
   const { id, title, tickets_left } = recital
+  
   return (
     <div>
       <h1>{title}</h1>

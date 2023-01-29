@@ -1,10 +1,22 @@
 import React from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-const NavBar = () => {
+const NavBar = ({ currentUser, updateUser }) => {
 
-  const params = useParams()
+  const navigate = useNavigate()
 
+  const handleLogoutClick = () => {
+    fetch('/logout', {
+      method: "DELETE"
+    })
+    .then(r => {
+      if(r.ok) {
+        updateUser(false)
+        navigate('/login')
+      }
+    })
+  }
+  
   return (
     <div className='navigation-bar'>
       <NavLink to="/">Home</NavLink>
@@ -12,8 +24,8 @@ const NavBar = () => {
       <NavLink to="/recitals/add">Add Recital</NavLink>
       <NavLink to="/users/new">Signup</NavLink>
       <NavLink to="/login">Login</NavLink>
-      <NavLink to={`/users/${params.id}`}>My Profile</NavLink>
-      <button>Logout</button>
+      {currentUser ? <NavLink to={"/users/:id"}>My Profile</NavLink> : null}
+      {currentUser ? <button onClick={handleLogoutClick}>Logout</button> : null}
     </div>
   )
 }

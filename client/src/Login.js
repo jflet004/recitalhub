@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ updateUser }) => {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -28,12 +28,13 @@ const Login = () => {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(user => navigate(`/users/${user.id}`))
-        } else {
-          r.json().then(data => {
-            console.log(data)
-            setErrors(data.errors)
+          r.json().then(user => {
+            updateUser(user)
+            navigate("/recitals")
+            // navigate(`/users/${user.id}`)
           })
+        } else {
+          r.json().then(data => setErrors(data.errors))
         }
       })
   }
@@ -59,7 +60,7 @@ const Login = () => {
           onChange={handleChange} />
         <input type='submit' value='Login' />
       </form>
-      {errors ? <div> {errors} </div> : null}
+      {/* {errors ? <div> {errors} </div> : null} */}
     </div>
   )
 }
