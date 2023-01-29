@@ -1,28 +1,32 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { UserContext } from './context/user'
 
 const RecitalDetails = ({ deleteRecital }) => {
 
   const { currentUser } = useContext(UserContext)
+  
   const [recital, setRecital] = useState([])
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(0)
+  
+  
   const params = useParams()
   const navigate = useNavigate()
-
+  
   useEffect(() => {
     fetch(`/recitals/${params.id}`)
-      .then(r => {
-        if (r.ok) {
-          r.json().then(data => {
-            setRecital(data)
-            // setLoading(false)
-          })
-        } else {
-          r.json().then(data => console.log(data.errors))
-        }
-      })
-  }, [])
+    .then(r => {
+      if (r.ok) {
+        r.json().then(data => {
+          setRecital(data)
+        })
+      } else {
+        r.json().then(data => console.log(data.errors))
+      }
+    })
+  }, [params.id])
+  
+  const { id, title, description } = recital
 
   const handleDelete = () => {
     fetch(`/recitals/${params.id}`, {
@@ -62,11 +66,13 @@ const RecitalDetails = ({ deleteRecital }) => {
       })
   }
 
-  const { id, title, description } = recital
+ 
 
   const handleQuantityChange = e => {
     if(e.target.value <= recital.tickets_left) {
       setQuantity(e.target.value)
+    } else if(recital.tickets_left === 0) {
+      alert('No more tickets available')
     } else {
       alert(`Only ${e.target.value - 1} tickets available`)
     }
@@ -79,10 +85,12 @@ const RecitalDetails = ({ deleteRecital }) => {
       <h1>{title}</h1>
       <h3>{description}</h3>
       <h5>Students Performing:</h5>
-      <label>Quantity:</label> <input type="number" min="1" max="5" value={quantity} onChange={handleQuantityChange} />
+      <label>Quantity:</label> <input type="number" min="0" max="5" value={quantity} onChange={handleQuantityChange} />
       
       {recital.tickets_left > 0 ? <button onClick={handleBuyClick}>Buy Tickets</button> : "Sold Out"}
-      <button onClick={handleDelete}>Delete</button>
+      <button className='delete-btn' onClick={handleDelete}>Delete</button>
+
+      <Link to={`/recitals/${id}/edit`}>Update</Link>
     </div>
   )
 }

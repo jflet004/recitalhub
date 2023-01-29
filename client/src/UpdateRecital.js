@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const NewRecitalForm = ({ addRecital }) => {
+const UpdateRecital = ({ updateRecital }) => {
+  const navigate = useNavigate()
+  const params = useParams()
 
-  const [errors, setErrors] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     capacity: ""
   })
-  const navigate = useNavigate()
+
+  useEffect(() => {
+    fetch(`/recitals/${params.id}`)
+    .then( r => r.json())
+    .then(data => setFormData({
+      title: data.title,
+      description: data.description,
+      capacity: data.capacity
+    }))
+  }, [params.id])
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -18,8 +28,8 @@ const NewRecitalForm = ({ addRecital }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetch("/recitals/new", {
-      method: "POST",
+    fetch(`/recitals/${params.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
@@ -27,51 +37,45 @@ const NewRecitalForm = ({ addRecital }) => {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(addRecital)
-          navigate('/recitals')
+          r.json().then(updateRecital)
+          navigate(`/recitals/${params.id}`)
         } else {
-          r.json().then(data => setErrors(data.errors))
+          r.json().then(data => console.log(data))
         }
       })
   }
 
 
   return (
-    <div className='form'>
+    <div>
       <form onSubmit={handleSubmit}>
         <label>Title</label>
-        <br/>
         <input
           type="text"
           name="title"
           value={formData.title}
           onChange={handleChange}
         />
-        <br/>
         <label>Description</label>
-        <br/>
         <input
           type="text"
           name="description"
           value={formData.description}
           onChange={handleChange}
-          />
-          <br/>
+        />
         <label>Capacity</label>
-          <br/>
         <input
           type="number"
           name="capacity"
           value={formData.capacity}
           onChange={handleChange}
-          />
-          <br/>
-        <input type="submit" value="Add Recital" />
+        />
+        <input type="submit" value="Update" />
       </form>
       <br />
-      {errors ? errors.map(error => <li>{error}</li>) : null}
+      
     </div>
   )
 }
 
-export default NewRecitalForm
+export default UpdateRecital

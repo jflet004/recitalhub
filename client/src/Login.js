@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from './context/user'
 
 const Login = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const { setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -45,19 +45,23 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='form'>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
+        <br/>
         <input
           type='text'
           name='username'
           value={username}
           onChange={handleChange} />
+          <br/>
         <label>Password</label>
+          <br/>
         <input type='password'
           name='password'
           value={password}
           onChange={handleChange} />
+          <br/>
         <input type='submit' value='Login' />
       </form>
     </div>

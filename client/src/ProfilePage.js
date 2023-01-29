@@ -19,18 +19,18 @@ const ProfilePage = () => {
 
   const attendingRecitals = userTickets.map((recital) => (
     <li key={recital.id}>
-      Event: {recital.title}
-      <br />
-      Number of Tickets: {recital.quantity}
+      <span>Event: {recital.title} - </span>
+      <span>Number of Tickets: {recital.quantity}</span>
     </li>))
 
   return (
-    <div>
+    <div className='text'>
       <h1>Welcome {user.username}!</h1>
+      {user.admin ? <h5><i>Admin Account</i></h5> : null}
       <h2>Recent Orders:</h2>
-      <ul>
-        {attendingRecitals}
-      </ul>
+
+      {attendingRecitals}
+
     </div>
   )
 }

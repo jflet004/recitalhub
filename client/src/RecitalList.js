@@ -9,10 +9,9 @@ const RecitalList = ({ recitals }) => {
   ))
 
   return (
-    <ul>
-      <h1>Recital List Here</h1>
+    <div className='text'>
       {recitalList}
-    </ul>
+    </div>
   )
 }
 

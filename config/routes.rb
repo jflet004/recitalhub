@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/recitals', to: "recitals#index"
   post '/recitals/new', to: "recitals#create"
   get '/recitals/:id', to: "recitals#show"
-  patch '/recitals/:id/edit', to: "recitals#update"
+  patch '/recitals/:id', to: "recitals#update"
   delete '/recitals/:id', to: "recitals#destroy"
   
   get '/tickets', to: "tickets#index"

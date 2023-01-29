@@ -17,16 +17,16 @@ const NavBar = () => {
   }
   
   return (
-    <div className='navigation-bar'>
+    <div className='topnav'>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/recitals">Upcoming Recitals</NavLink>
-      <NavLink to="/recitals/new">Add Recital</NavLink>
       <NavLink to="/signup">Signup</NavLink>
+      <NavLink to="/recitals/new">Add Recital</NavLink>
       <NavLink to="/login">Login</NavLink>
       {currentUser ? (
         <div>
           <NavLink to="/profile">My Profile</NavLink>
-          <button onClick={handleLogoutClick}>Logout</button>
+          <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
         </div>) : null}
 
     </div>

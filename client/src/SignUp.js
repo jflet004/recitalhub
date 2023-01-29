@@ -46,20 +46,25 @@ const SignUp = ({ updateUser }) => {
   }
 
   return (
-    <div>
+    <div className='form'>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
+        <br/>
         <input 
           type='text'
           name='username'
           value={username} 
           onChange={handleChange} />
+          <br/>
         <label>Password</label>
+          <br/>
         <input type='password'
           name='password'
           value={password}
           onChange={handleChange} />
+          <br/>
         <input type='submit' value='Sign up' />
+          <br/>
       </form>
       {/* {errors ? <div> {errors} </div> : null} */}
     </div>
