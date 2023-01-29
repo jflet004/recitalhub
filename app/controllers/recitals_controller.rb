@@ -1,6 +1,4 @@
 class RecitalsController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create]
-  before_action :is_authorized?, only: [:create]
 
   def index
     recitals = Recital.all
@@ -17,11 +15,11 @@ class RecitalsController < ApplicationController
     render json: recital, status: :created
   end
 
-  # def update
-  #   recital = Recital.find(params[:id])
-  #   recital.update!(recital_params)
-  #   render json: recital, status: :accepted
-  # end
+  def update
+    recital = Recital.find(params[:id])
+    recital.update!(recital_params)
+    render json: recital, status: :accepted
+  end
   
   def destroy
     recital = Recital.find(params[:id])

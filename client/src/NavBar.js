@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { UserContext } from './context/user'
 
-const NavBar = ({ currentUser, updateUser }) => {
+const NavBar = () => {
+
+  const { currentUser, setCurrentUser } = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -9,7 +12,7 @@ const NavBar = ({ currentUser, updateUser }) => {
     fetch('/logout', {
       method: "DELETE"
     })
-      updateUser(false)
+      setCurrentUser(false)
       navigate('/login')
   }
   
@@ -18,10 +21,14 @@ const NavBar = ({ currentUser, updateUser }) => {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/recitals">Upcoming Recitals</NavLink>
       <NavLink to="/recitals/new">Add Recital</NavLink>
-      <NavLink to="/users/new">Signup</NavLink>
+      <NavLink to="/signup">Signup</NavLink>
       <NavLink to="/login">Login</NavLink>
-      {currentUser ? <NavLink to={"/me"}>My Profile</NavLink> : null}
-      {currentUser ? <button onClick={handleLogoutClick}>Logout</button> : null}
+      {currentUser ? (
+        <div>
+          <NavLink to="/profile">My Profile</NavLink>
+          <button onClick={handleLogoutClick}>Logout</button>
+        </div>) : null}
+
     </div>
   )
 }

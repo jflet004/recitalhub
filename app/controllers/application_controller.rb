@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::API
 
-  before_action :authenticate_user
   
   include ActionController::Cookies
 
@@ -15,12 +14,12 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_user
-    render json: { errors: {error: "Not authorized"} }, status: :unauthorized unless current_user
+    render json: { errors: "Not authorized" }, status: :unauthorized unless current_user
   end
 
   def is_authorized?
-    access_granted = current_user.admin?
-    render json: { errors: {error: "You are not worthy to use this function"} }, status: :forbidden unless access_granted
+    permitted = current_user.admin?
+    render json: { errors: "You are not worthy to use this function" }, status: :forbidden unless permitted
   end
 
   def unprocessable_entity(invalid)
@@ -28,7 +27,7 @@ class ApplicationController < ActionController::API
   end
 
   def record_not_found(error)
-    render json: { errors: {error: "Not Found"} }, status: :not_found
+    render json: { errors: "Not Found" }, status: :not_found
   end
 
 end

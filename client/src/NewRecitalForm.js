@@ -7,6 +7,7 @@ const NewRecitalForm = ({ addRecital }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    capacity: ""
   })
   const navigate = useNavigate()
 
@@ -29,10 +30,11 @@ const NewRecitalForm = ({ addRecital }) => {
           r.json().then(addRecital)
           navigate('/recitals')
         } else {
-          r.json().then(data => setErrors(data.errors))
+          r.json().then(data => setErrors(data))
         }
       })
   }
+
 
   return (
     <div>
@@ -51,10 +53,17 @@ const NewRecitalForm = ({ addRecital }) => {
           value={formData.description}
           onChange={handleChange}
         />
+        <label>Capacity</label>
+        <input
+          type="number"
+          name="capacity"
+          value={formData.capacity}
+          onChange={handleChange}
+        />
         <input type="submit" value="Add Recital" />
       </form>
       <br />
-      {/* {errors ? errors.map(e => <div>{e}</div>) : null} */}
+      
     </div>
   )
 }

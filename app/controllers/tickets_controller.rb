@@ -10,11 +10,6 @@ class TicketsController < ApplicationController
     render json: ticket, status: :created
   end
 
-  def update
-    ticket = Ticket.find(params[:id])
-    ticket.update!(ticket_params)
-    render json: ticket, status: :accepted
-  end
 
   private
 

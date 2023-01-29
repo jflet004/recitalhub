@@ -5,5 +5,7 @@ class User < ApplicationRecord
   has_many :recitals, through: :tickets
 
   has_secure_password
+
+
   
 end

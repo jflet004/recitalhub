@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from './context/user'
 
-const Login = ({ updateUser }) => {
+const Login = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     username: "",
     password: ""
   })
-  const [errors, setErrors] = useState([])
 
   const { username, password } = formData
 
@@ -29,12 +30,11 @@ const Login = ({ updateUser }) => {
       .then(r => {
         if (r.ok) {
           r.json().then(user => {
-            updateUser(user)
-            navigate("/recitals")
-            // navigate(`/users/${user.id}`)
+            setCurrentUser(user)
+            navigate('/profile')
           })
         } else {
-          r.json().then(data => setErrors(data.errors))
+          r.json().then(data => console.log(data.errors))
         }
       })
   }
@@ -60,7 +60,6 @@ const Login = ({ updateUser }) => {
           onChange={handleChange} />
         <input type='submit' value='Login' />
       </form>
-      {/* {errors ? <div> {errors} </div> : null} */}
     </div>
   )
 }

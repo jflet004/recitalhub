@@ -9,7 +9,7 @@ const SignUp = ({ updateUser }) => {
     username: "",
     password: ""
   })
-  const [errors, setErrors] = useState([])
+  // const [errors, setErrors] = useState([])
 
   const { username, password } = formData
 
@@ -31,14 +31,13 @@ const SignUp = ({ updateUser }) => {
         if (r.ok) {
           r.json().then(user => {
             updateUser(user)
-            navigate(`/users/${user.id}`)
+            navigate('/me')
           })
         } else {
           r.json().then(data => {
             console.log(data.errors)
-            setErrors(data.errors)})
-        }
-      })
+        })
+      }})
   }
 
   const handleChange = (e) => {
