@@ -59,7 +59,7 @@ const Login = () => {
           onChange={handleChange} />
         <input type='submit' value='Login' />
       </form>
-      {errors ? errors.map(error => <div> {error} </div>) : null}
+      {errors ? <div> {errors} </div> : null}
     </div>
   )
 }
