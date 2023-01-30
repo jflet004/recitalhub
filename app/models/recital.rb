@@ -19,8 +19,8 @@ class Recital < ApplicationRecord
     self.capacity - self.tickets_sold
   end
 
-  def add_student(student_name)
-    student = Student.find_by(name: student_name)
+  def add_student(student_name, age)
+    student = Student.create(name: student_name, age: age)
     self.students << student
   end
 

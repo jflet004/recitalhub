@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 const ProfilePage = () => {
 
   const [user, setUser] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('/me')
@@ -11,9 +12,11 @@ const ProfilePage = () => {
       .then(data => {
         setUser(data)
       })
+      .catch(error => console.log(error))
+      .finally(() => setLoading(false))
   }, [])
 
-  if (!user) return <h1>Loading</h1>
+  if (loading) return <h3>Please Log In</h3>
 
   const userTickets = user.tickets.map(ticket => ticket.recital_info)
 
@@ -29,9 +32,7 @@ const ProfilePage = () => {
       <h1>Welcome {user.username}!</h1>
       {user.admin ? <h5><i>Admin Account</i></h5> : null}
       <h2>Recent Orders:</h2>
-
       {attendingRecitals}
-
     </div>
   )
 }

@@ -15,30 +15,32 @@ import './App.css';
 function App() {
 
   const [recitals, setRecitals] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch("/recitals")
-      .then(r => {
-        if (r.ok) {
-          r.json().then(setRecitals)
-        } else {
-          r.json().then(data => alert(data.error))
-        }
-      })
+      .then(r => r.json())
+      .then(recitals => setRecitals(recitals))
+      .catch(error => console.log(error))
+      .finally(() => setLoading(false))
   }, [])
 
 
   const addRecital = recital => setRecitals(active => [...active, recital])
+
   const deleteRecital = id => setRecitals(active => active.filter(recital => recital.id !== id))
+
   const updateRecital = selectedRecital => setRecitals(active => {
     return active.map(recital => {
-      if(recital.id === selectedRecital.id) {
+      if (recital.id === selectedRecital.id) {
         return selectedRecital
       } else {
         return recital
       }
     })
   })
+
+  if (loading) return <h1>Loading</h1>
 
 
 
@@ -49,9 +51,9 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
-          <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={deleteRecital}  />} />
+          <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={deleteRecital} />} />
           <Route path="/recitals/new" element={<NewRecitalForm addRecital={addRecital} />} />
-          <Route path="/recitals/:id/edit" element={<UpdateRecital updateRecital={updateRecital}/>} />
+          <Route path="/recitals/:id/edit" element={<UpdateRecital updateRecital={updateRecital} />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
