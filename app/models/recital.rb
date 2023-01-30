@@ -32,6 +32,11 @@ class Recital < ApplicationRecord
     self.update_all(capacity: number)
   end
 
+  def number
+    user = User.find(session[:user_id])
+    user.tickets.quantity
+  end
+
 
 
 end

@@ -3,4 +3,6 @@ class RecitalSerializer < ActiveModel::Serializer
   has_many :tickets
   # has_many :students
 
+  
+
 end
