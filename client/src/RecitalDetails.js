@@ -5,27 +5,34 @@ import { UserContext } from './context/user'
 const RecitalDetails = ({ deleteRecital }) => {
 
   const { currentUser } = useContext(UserContext)
-  
+
   const [recital, setRecital] = useState([])
   const [quantity, setQuantity] = useState(0)
-  
-  
+  const [students, setStudents] = useState([])
+
+
   const params = useParams()
   const navigate = useNavigate()
-  
+
+  useEffect(() => {
+    fetch('/students')
+      .then(r => r.json())
+      .then(students => setStudents(students))
+  }, [])
+
   useEffect(() => {
     fetch(`/recitals/${params.id}`)
-    .then(r => {
-      if (r.ok) {
-        r.json().then(data => {
-          setRecital(data)
-        })
-      } else {
-        r.json().then(data => console.log(data.errors))
-      }
-    })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(data => {
+            setRecital(data)
+          })
+        } else {
+          r.json().then(data => console.log(data.errors))
+        }
+      })
   }, [params.id])
-  
+
   const { id, title, description } = recital
 
   const handleDelete = () => {
@@ -42,7 +49,7 @@ const RecitalDetails = ({ deleteRecital }) => {
       })
   }
 
-  
+
   const handleBuyClick = () => {
     const ticket = {
       recital_id: id,
@@ -66,27 +73,30 @@ const RecitalDetails = ({ deleteRecital }) => {
       })
   }
 
- 
+
 
   const handleQuantityChange = e => {
-    if(e.target.value <= recital.tickets_left) {
+    if (e.target.value <= recital.tickets_left) {
       setQuantity(e.target.value)
-    } else if(recital.tickets_left === 0) {
+    } else if (recital.tickets_left === 0) {
       alert('No more tickets available')
     } else {
       alert(`Only ${e.target.value - 1} tickets available`)
     }
   }
 
-  if(!currentUser) return <h1>Loading</h1>
+  const studentsPerforming = students.map(student => <li key={student.id}>{student.name}</li>)
+
+  if (!currentUser) return <h1>Loading</h1>
 
   return (
     <div>
       <h1>{title}</h1>
       <h3>{description}</h3>
-      <h5>Students Performing:</h5>
+      <h3>Students Performing:</h3>
+      {studentsPerforming}
       <label>Quantity:</label> <input type="number" min="0" max="5" value={quantity} onChange={handleQuantityChange} />
-      
+
       {recital.tickets_left > 0 ? <button onClick={handleBuyClick}>Buy Tickets</button> : "Sold Out"}
       <button className='delete-btn' onClick={handleDelete}>Delete</button>
 

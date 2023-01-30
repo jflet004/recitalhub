@@ -34,7 +34,7 @@ const Login = () => {
             navigate('/profile')
           })
         } else {
-          r.json().then(data => console.log(data.errors))
+          r.json().then(data => console.log(data))
         }
       })
   }

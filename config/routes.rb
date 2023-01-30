@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :students, only: [:index]
+  resources :students, only: [:index, :create]
   # resources :tickets
 
   #Custom Routes
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/tickets/new', to: "tickets#create"
   patch '/tickets/:id', to: "tickets#show"
 
+  get "/users", to: "users#index"
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"

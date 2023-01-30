@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  
+
   def show
-    render json: current_user, status: :ok
+    render json: current_user, include: ["tickets", "tickets.recital"], status: :ok
   end
 
   def create

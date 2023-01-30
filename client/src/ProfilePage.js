@@ -15,13 +15,13 @@ const ProfilePage = () => {
 
   if (!user) return <h1>Loading</h1>
 
-  const userTickets = user.tickets.map(ticket => ticket.recital_info)
+  // const userTickets = user.tickets.map(ticket => ticket.recital)
 
-  const attendingRecitals = userTickets.map((recital) => (
-    <li key={recital.id}>
-      <span>Event: {recital.title} - </span>
-      <span>Number of Tickets: {recital.quantity}</span>
-    </li>))
+  // const attendingRecitals = userTickets.map((recital) => (
+  //   <li key={recital.id}>
+  //     <span>Event: {recital.title} - </span>
+  //     <span>Number of Tickets: {quantity}</span>
+  //   </li>))
 
   return (
     <div className='text'>
@@ -29,7 +29,7 @@ const ProfilePage = () => {
       {user.admin ? <h5><i>Admin Account</i></h5> : null}
       <h2>Recent Orders:</h2>
 
-      {attendingRecitals}
+      {/* {attendingRecitals} */}
 
     </div>
   )

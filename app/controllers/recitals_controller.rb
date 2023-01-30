@@ -2,7 +2,7 @@ class RecitalsController < ApplicationController
 
   def index
     recitals = Recital.all
-    render json: recitals, status: :ok
+    render json: recitals, include: ['users', 'users.tickets'], status: :ok
   end
   
   def show
