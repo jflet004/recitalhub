@@ -1,5 +1,9 @@
 class RecitalsController < ApplicationController
 
+  skip_before_action :user_authentication, only:[:index]
+  before_action :is_admin?, only: [:create, :update]
+
+
   def index
     recitals = Recital.all
     render json: recitals, include: ['users', 'users.tickets'], status: :ok
@@ -11,7 +15,7 @@ class RecitalsController < ApplicationController
   end
 
   def create
-    recital = Recital.create!(recital_params)
+    recital = Recital.create(recital_params)
     render json: recital, status: :created
   end
 
@@ -33,5 +37,6 @@ class RecitalsController < ApplicationController
   def recital_params
     params.permit(:title, :description, :tickets_left, :capacity, :img_url)
   end
+
 
 end

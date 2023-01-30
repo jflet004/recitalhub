@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
 
+  before_action :user_authentication
   
   include ActionController::Cookies
 
@@ -8,10 +9,19 @@ class ApplicationController < ActionController::API
   
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   private
+
+  def user_authentication
+    return render json: { error: "Not Authorized" }, status: :unauthorized unless current_user
+  end
+
+  def is_admin?
+    authorized = current_user.admin?
+    render json: { errors: "Does not have administrative access" }, status: :forbidden unless authorized
+  end
 
   def unprocessable_entity(invalid)
     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity

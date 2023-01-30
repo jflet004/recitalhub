@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from './context/user'
 
-const SignUp = ({ updateUser }) => {
+const SignUp = () => {
+
+  const {setCurrentUser} = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -9,7 +12,7 @@ const SignUp = ({ updateUser }) => {
     username: "",
     password: ""
   })
-  // const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([])
 
   const { username, password } = formData
 
@@ -20,7 +23,7 @@ const SignUp = ({ updateUser }) => {
       password
     }
 
-    fetch('/users', {
+    fetch('/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -30,12 +33,13 @@ const SignUp = ({ updateUser }) => {
       .then(r => {
         if (r.ok) {
           r.json().then(user => {
-            updateUser(user)
-            navigate('/me')
+            setCurrentUser(user)
+            navigate('/profile')
           })
         } else {
           r.json().then(data => {
-            console.log(data.errors)
+            setErrors(data.errors)
+            console.log(data)
         })
       }})
   }
@@ -66,7 +70,7 @@ const SignUp = ({ updateUser }) => {
         <input type='submit' value='Sign up' />
           <br/>
       </form>
-      {/* {errors ? <div> {errors} </div> : null} */}
+      {errors ? errors.map(error => <li key={error}>{error}</li>) : null}
     </div>
   )
 }

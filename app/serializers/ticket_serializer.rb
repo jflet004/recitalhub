@@ -3,6 +3,7 @@ class TicketSerializer < ActiveModel::Serializer
   # has_one :recital
 
   def recital_info
+
     {id: object.id, title: object.recital.title, quantity: object.quantity}
   end
 

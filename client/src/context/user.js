@@ -4,7 +4,7 @@ const UserContext = React.createContext()
 
 function UserProvider({ children }) {
 
-  const [currentUser, setCurrentUser] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -12,8 +12,9 @@ function UserProvider({ children }) {
       .then(r => r.json())
       .then(data => {
         setCurrentUser(data)
+        console.log(data)
       })
-      .catch(error => alert(error))
+      .catch(error => console.log(error))
       .finally(() => setLoading(false))
   }, [])
 

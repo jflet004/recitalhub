@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const UpdateRecital = ({ updateRecital }) => {
+
   const navigate = useNavigate()
   const params = useParams()
 
+  const [errors, setErrors] = useState([])
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -42,7 +44,7 @@ const UpdateRecital = ({ updateRecital }) => {
           r.json().then(updateRecital)
           navigate(`/recitals/${params.id}`)
         } else {
-          r.json().then(data => console.log(data))
+          r.json().then(data => setErrors(data.errors))
         }
       })
   }
@@ -82,7 +84,7 @@ const UpdateRecital = ({ updateRecital }) => {
         <input type="submit" value="Update" />
       </form>
       <br />
-      
+      {errors ? errors : null}
     </div>
   )
 }

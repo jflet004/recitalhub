@@ -6,6 +6,7 @@ const Login = () => {
   const { setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate()
 
+  const [errors, setErrors] = useState([])
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -31,10 +32,10 @@ const Login = () => {
         if (r.ok) {
           r.json().then(user => {
             setCurrentUser(user)
-            navigate('/profile')
+            navigate('/')
           })
         } else {
-          r.json().then(data => console.log(data))
+          r.json().then(data => setErrors(data.errors))
         }
       })
   }
@@ -63,7 +64,9 @@ const Login = () => {
           onChange={handleChange} />
           <br/>
         <input type='submit' value='Login' />
+          <br/>
       </form>
+      {errors ? errors : null}
     </div>
   )
 }

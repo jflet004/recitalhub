@@ -18,23 +18,28 @@ const ProfilePage = () => {
 
   if (loading) return <h3>Please Log In</h3>
 
-  const userTickets = user.tickets.map(ticket => ticket.recital_info)
+  if (!user || user.error) {
+    return (
+      <p>Signup or Login to access your profile</p>
+    )
+  } else {
 
-  const attendingRecitals = userTickets.map((recital) => (
-    <li key={recital.id}>
-      <span>Event: {recital.title} - </span>
-      <span>Number of Tickets: {recital.quantity}</span>
-    </li>))
+    const userTickets = user.tickets.map(ticket => ticket.recital_info)
+    const attendingRecitals = userTickets.map((recital) => (
+      <li key={recital.id}>
+        <span>Event: {recital.title} - </span>
+        <span>Number of Tickets: {recital.quantity}</span>
+      </li>))
 
-
-  return (
-    <div className='text'>
-      <h1>Welcome {user.username}!</h1>
-      {user.admin ? <h5><i>Admin Account</i></h5> : null}
-      <h2>Recent Orders:</h2>
-      {attendingRecitals}
-    </div>
-  )
+    return (
+      <div className='text'>
+        <h1>Welcome {user.username}!</h1>
+        {user.admin ? <h5><i>Admin Account</i></h5> : null}
+        <h2>Recent Orders:</h2>
+        {attendingRecitals}
+      </div>
+    )
+  }
 }
 
 export default ProfilePage

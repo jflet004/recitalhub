@@ -6,10 +6,6 @@ class Recital < ApplicationRecord
   has_many :tickets
   has_many :users, through: :tickets
 
-  def purchase_ticket(price,qty)
-      ticket = Ticket.create(price:price, quantity:qty, recital_id: self.id, user_id: 3)
-      self.tickets << ticket
-  end
 
   def tickets_sold
     self.tickets.sum{|ticket| ticket.quantity}

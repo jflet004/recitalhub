@@ -10,6 +10,7 @@ const RecitalDetails = ({ deleteRecital }) => {
   const [recital, setRecital] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [errors, setErrors] = useState([])
 
 
   const params = useParams()
@@ -20,8 +21,9 @@ const RecitalDetails = ({ deleteRecital }) => {
       .then(r => r.json())
       .then(data => {
         setRecital(data)
+        setErrors(data.error)
       })
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
       .finally(() => setLoading(false));
 
   }, [params.id])
@@ -77,21 +79,20 @@ const RecitalDetails = ({ deleteRecital }) => {
   }
 
   if (loading) return <h1>Loading</h1>
-
-  const studentsPerforming = recital.students.map(student => <li key={student.id}>{student.name}</li>)
+  if (errors) return <p>{errors}. Signup or login to gain access</p>
 
   return (
     <div className='details'>
       <h1>{title}</h1>
-      <Link to={`/recitals/${id}/edit`}> Update</Link>
+      {currentUser.admin ? <Link to={`/recitals/${id}/edit`}> Update</Link> : null}
       <p>{description}</p>
       <h3>Students Performing:</h3>
-      {studentsPerforming}
-      <br/>
-      <label>Quantity:</label> <input type="number" min="1" max="5" value={quantity} onChange={handleQuantityChange} />
-
+      {recital.students.map(student => <li key={student.id}>{student.name}</li>)}
+      <br />
+      <label>Quantity:</label> <input type="number" min="1" max="20" value={quantity} onChange={handleQuantityChange} />
       {recital.tickets_left > 0 ? <button onClick={handleBuyClick}>Buy Tickets</button> : "Sold Out"}
-      <button className='delete-btn' onClick={handleDelete}>Delete</button>
+      {currentUser.admin ? <button className='delete-btn' onClick={handleDelete}>Delete</button> : null}
+      <br />
     </div>
   )
 }
