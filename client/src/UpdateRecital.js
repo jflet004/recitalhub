@@ -8,7 +8,8 @@ const UpdateRecital = ({ updateRecital }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    capacity: ""
+    capacity: "",
+    img_url: ""
   })
 
   useEffect(() => {
@@ -17,7 +18,8 @@ const UpdateRecital = ({ updateRecital }) => {
     .then(data => setFormData({
       title: data.title,
       description: data.description,
-      capacity: data.capacity
+      capacity: data.capacity,
+      img_url: data.img_url
     }))
   }, [params.id])
 
@@ -49,6 +51,13 @@ const UpdateRecital = ({ updateRecital }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <label>Image</label>
+        <input
+          type="text"
+          name="image"
+          value={formData.img_url}
+          onChange={handleChange}
+        />
         <label>Title</label>
         <input
           type="text"

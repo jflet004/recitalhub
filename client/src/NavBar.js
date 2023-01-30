@@ -12,22 +12,25 @@ const NavBar = () => {
     fetch('/logout', {
       method: "DELETE"
     })
-      setCurrentUser(false)
-      navigate('/login')
+    setCurrentUser(false)
+    navigate('/')
   }
-  
+
   return (
     <div className='topnav'>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/recitals">Upcoming Recitals</NavLink>
-      <NavLink to="/signup">Signup</NavLink>
-      <NavLink to="/recitals/new">Add Recital</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      {currentUser ? (
+
+      {currentUser ? 
         <div>
+          <NavLink to="/recitals/new">Add Recital</NavLink>
           <NavLink to="/profile">My Profile</NavLink>
           <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
-        </div>) : null}
+        </div> : 
+        <div>
+          <NavLink to="/signup">Signup</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </div>}
 
     </div>
   )

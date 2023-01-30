@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { UserContext } from './context/user'
+// import myImage from '../src/images/cello.jpg'
 
 const RecitalDetails = ({ deleteRecital }) => {
 
