@@ -8,7 +8,7 @@ const RecitalDetails = ({ deleteRecital }) => {
   const { currentUser } = useContext(UserContext)
 
   const [recital, setRecital] = useState([])
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
 
 
@@ -88,7 +88,7 @@ const RecitalDetails = ({ deleteRecital }) => {
       <h3>Students Performing:</h3>
       {studentsPerforming}
       <br/>
-      <label>Quantity:</label> <input type="number" min="0" max="5" value={quantity} onChange={handleQuantityChange} />
+      <label>Quantity:</label> <input type="number" min="1" max="5" value={quantity} onChange={handleQuantityChange} />
 
       {recital.tickets_left > 0 ? <button onClick={handleBuyClick}>Buy Tickets</button> : "Sold Out"}
       <button className='delete-btn' onClick={handleDelete}>Delete</button>

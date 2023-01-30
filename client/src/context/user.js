@@ -5,6 +5,7 @@ const UserContext = React.createContext()
 function UserProvider({ children }) {
 
   const [currentUser, setCurrentUser] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('/me')
@@ -12,7 +13,11 @@ function UserProvider({ children }) {
       .then(data => {
         setCurrentUser(data)
       })
+      .catch(error => alert(error))
+      .finally(() => setLoading(false))
   }, [])
+
+  if (loading) return <h1>Loading</h1>
 
   return (
     <UserContext.Provider value={{ currentUser, setCurrentUser }}>

@@ -69,7 +69,7 @@ const NewRecitalForm = ({ addRecital }) => {
         <input type="submit" value="Add Recital" />
       </form>
       <br />
-      {errors ? errors.map(error => <li>{error}</li>) : null}
+      {errors ? errors.map(error => <li key={error}>{error}</li>) : null}
     </div>
   )
 }
