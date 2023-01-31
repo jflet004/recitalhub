@@ -1,3 +1,38 @@
+# LeARnMUs - Musical School Website
+
+## Description
+
+Full stack web application with a Rails API backend and a React frontend. Signup or login to view upcoming student recitals and purchase tickets; while keeping track or current and previous orders.
+
+![GIF](client/public/videos/p4-web-preview.gif)
+
+## Installation
+
+1. Fork and clone this repository.
+2. To get set up, run:
+
+```bash
+ bundle install
+ rails db:migrate db:seed
+ npm install --prefix client
+```
+
+3. Run the Rails server with:
+
+```bash
+ rails s
+```
+
+4.  Run React in another terminal with:
+
+```bash
+ npm start --prefix client
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
+
 # Project Template: React/Rails API
 
 ## Description
@@ -9,7 +44,7 @@ backend together, and easily deploy them to Render.
 SQLite, you will need to make the following changes in the project files:
 
 1. In the `Gemfile`, replace `gem 'pg', '~> 1.1'` with `gem 'sqlite3', '~>
-   1.4'`.
+1.4'`.
 2. In the `database.yml` file, change the line `adapter: postgresql` to
    `adapter: sqlite3`.
 
@@ -287,11 +322,11 @@ brew services start postgresql
 ### Set Up a Render Account
 
 You can sign up for a free account at
-[https://dashboard.render.com/register][Render signup]. We recommend that you
+[https://dashboard.render.com/register][render signup]. We recommend that you
 sign up using GitHub as that will make it a little easier for you to connect
 Render to your GitHub account. The instructions below assume you've done that.
 
-[Render signup]: https://dashboard.render.com/register
+[render signup]: https://dashboard.render.com/register
 
 Once you've completed the signup process, you will be taken to the Render
 dashboard. In order to connect Render to your GitHub account, you'll need to
@@ -349,5 +384,3 @@ troubleshoot:
 
 - [Getting Started with Ruby on Rails on Render](https://render.com/docs/deploy-rails)
 - [Render Databases Guide](https://render.com/docs/databases)
-
-

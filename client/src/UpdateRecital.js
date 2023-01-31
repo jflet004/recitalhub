@@ -16,13 +16,13 @@ const UpdateRecital = ({ updateRecital }) => {
 
   useEffect(() => {
     fetch(`/recitals/${params.id}`)
-    .then( r => r.json())
-    .then(data => setFormData({
-      title: data.title,
-      description: data.description,
-      capacity: data.capacity,
-      img_url: data.img_url
-    }))
+      .then(r => r.json())
+      .then(data => setFormData({
+        title: data.title,
+        description: data.description,
+        capacity: data.capacity,
+        img_url: data.img_url
+      }))
   }, [params.id])
 
   const handleChange = e => {
