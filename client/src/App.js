@@ -28,7 +28,13 @@ function App() {
 
   const addRecital = recital => setRecitals(active => [...active, recital])
 
-  const deleteRecital = id => setRecitals(active => active.filter(recital => recital.id !== id))
+  function handleDeleteSpice(deletedRecital) {
+    setRecitals((recitals) =>
+      recitals.filter((recital) => recital.id !== deletedRecital.id)
+    );
+  }
+
+  // const deleteRecital = id => setRecitals(active => active.filter(recital => recital.id !== id))
 
   const updateRecital = selectedRecital => setRecitals(active => {
     return active.map(recital => {
@@ -51,7 +57,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
-          <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={deleteRecital} />} />
+          <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={handleDeleteSpice} />} />
           <Route path="/recitals/new" element={<NewRecitalForm addRecital={addRecital} />} />
           <Route path="/recitals/:id/edit" element={<UpdateRecital updateRecital={updateRecital} />} />
           <Route path="/profile" element={<ProfilePage />} />

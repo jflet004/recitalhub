@@ -56,7 +56,7 @@ const UpdateRecital = ({ updateRecital }) => {
         <label>Image</label>
         <input
           type="text"
-          name="image"
+          name="img_url"
           value={formData.img_url}
           onChange={handleChange}
         />

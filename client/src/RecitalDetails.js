@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { UserContext } from './context/user'
-// import myImage from '../src/images/cello.jpg'
 
 const RecitalDetails = ({ deleteRecital }) => {
 
@@ -37,7 +36,7 @@ const RecitalDetails = ({ deleteRecital }) => {
     })
       .then(r => {
         if (r.ok) {
-          deleteRecital(id)
+          deleteRecital(recital)
           navigate('/recitals')
         } else {
           r.json().then(data => console.log(data))

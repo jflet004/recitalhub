@@ -26,8 +26,9 @@ class RecitalsController < ApplicationController
   end
   
   def destroy
-    # recital = Recital.find(params[:id])
-    recital = current_user.recitals.find(params[:id])
+    # byebug
+    recital = Recital.find(params[:id])
+    # recital = current_user.recitals.find(params[:id])
     recital.destroy
     head :no_content
   end
