@@ -10,13 +10,15 @@ const NewRecitalForm = ({ addRecital }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    capacity: ""
+    capacity: "",
+    img_url: "",
   })
   const navigate = useNavigate()
 
   const handleChange = e => {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
+    console.log(formData)
   }
 
   const handleSubmit = e => {
@@ -53,6 +55,8 @@ const NewRecitalForm = ({ addRecital }) => {
             onChange={handleChange}
           />
           <br />
+    
+          <br />
           <label>Description</label>
           <br />
           <input
@@ -70,6 +74,10 @@ const NewRecitalForm = ({ addRecital }) => {
             value={formData.capacity}
             onChange={handleChange}
           />
+        <br />
+          <label>Image URL</label>
+        <br />
+          <input type="tex" value={formData.img_url} name="img_url" onChange={handleChange} />
           <br />
           <input type="submit" value="Add Recital" />
         </form>
