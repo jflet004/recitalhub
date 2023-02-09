@@ -19,7 +19,7 @@ const NavBar = () => {
   return (
     <div className='topnav'>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/recitals">Upcoming Recitals</NavLink>
+      <NavLink to="/upcoming-recitals">Upcoming Recitals</NavLink>
       {!currentUser || currentUser.error ? (
         <>
           <NavLink to="/signup">Signup</NavLink>
@@ -27,16 +27,16 @@ const NavBar = () => {
         </>
       ) : (
         <>
-          {currentUser.admin ? (
-            <NavLink to="/recitals/new">Add Recital</NavLink>
-          ) : null}
           <NavLink to="/profile">My Profile</NavLink>
+          {currentUser.admin ? (
+            <NavLink to="/new-recital">Add Recital</NavLink>
+          ) : null}
           <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
         </>
       )}
     </div>
   )
-  
+
 
 }
 

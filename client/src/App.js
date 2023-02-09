@@ -51,9 +51,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
+          <Route path="/upcoming-recitals" element={<RecitalList recitals={recitals} />} />
           <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={handleDeleteRecital} />} />
-          <Route path="/recitals/new" element={<NewRecitalForm addRecital={addRecital} />} />
+          <Route path="/new-recital" element={<NewRecitalForm addRecital={addRecital} />} />
           <Route path="/recitals/:id/edit" element={<UpdateRecital updateRecital={updateRecital} />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/signup" element={<SignUp />} />

@@ -1,32 +1,15 @@
 Rails.application.routes.draw do
   
-  resources :users
-  resources :tickets
+  resources :users, only: [:show, :create]
+  resources :tickets, only: [:index, :create]
   resources :recitals
-  resources :students
-  
-  # resources :tickets
+  resources :students, only: [:index, :create]
 
   #Custom Routes
-  # get '/recitals', to: "recitals#index"
-  # post '/recitals/new', to: "recitals#create"
-  # get '/recitals/:id', to: "recitals#show"
-  # patch '/recitals/:id', to: "recitals#update"
-  # delete '/recitals/:id', to: "recitals#destroy"
-  
-  # get '/tickets', to: "tickets#index"
-  # post '/tickets/new', to: "tickets#create"
-  # patch '/tickets/:id', to: "tickets#show"
-
-  # get "/users", to: "users#index"
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
-
-
-
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
