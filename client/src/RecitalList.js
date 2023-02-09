@@ -3,7 +3,6 @@ import RecitalCard from './RecitalCard'
 
 const RecitalList = ({ recitals }) => {
 
-
   const recitalList = recitals.map(recital => (
     <RecitalCard key={recital.id} recital={recital} />
   ))

@@ -34,8 +34,12 @@ function App() {
     );
 
   const updateRecital = newRecitalDetails => setRecitals(currentRecitalData => {
-    currentRecitalData.map(recitalData => {
-      return recitalData.id === newRecitalDetails.id ? newRecitalDetails : recitalData
+    return currentRecitalData.map(recitalData => {
+      if (recitalData.id === newRecitalDetails.id) {
+        return newRecitalDetails
+      } else {
+        return recitalData
+      }
     })
   })
 
