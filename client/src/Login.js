@@ -4,6 +4,7 @@ import { UserContext } from './context/user'
 
 const Login = () => {
   const { setCurrentUser } = useContext(UserContext)
+  
   const navigate = useNavigate()
 
   const [errors, setErrors] = useState([])

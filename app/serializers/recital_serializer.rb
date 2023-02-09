@@ -1,8 +1,9 @@
 class RecitalSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :img_url, :tickets_left, :capacity, :tickets_sold, :students
-  has_many :tickets
-  has_many :students
+  attributes :id, :title, :description, :capacity, :img_url, :tickets_sold, :tickets_left
+  has_many :students, serializer: StudentShortInfoSerializer
 
-  
+  def description
+    object.description.truncate(100)
+  end
 
 end

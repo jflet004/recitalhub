@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :user_authentication, only:[:create, :show, :index]
 
   def index
-    users = User.all
-    render json: users, status: :ok
+    @users = User.all
+    render json: @users, status: :ok
   end
 
   def show
@@ -12,15 +12,17 @@ class UsersController < ApplicationController
     else
       render json: {error: "User not found"}, status: :not_found
     end
+    # @user = User.find(params[:id])
+    # render json: @user, include: ["tickets.recital"]
   end
 
   def create
-    user = User.create(user_params)
-    if user.valid?
-      session[:user_id] = user.id
-      render json: user, status: :created
+    @user = User.create(user_params)
+    if @user.valid?
+      session[:user_id] = @user.id
+      render json: @user, status: :created
     else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

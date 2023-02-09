@@ -1,13 +1,13 @@
 class TicketsController < ApplicationController
 
   def index
-    tickets = Ticket.all
-    render json: tickets, status: :ok
+    @tickets = Ticket.all
+    render json: @tickets, status: :ok
   end
   
   def create
-    ticket = Ticket.create(ticket_params)
-    render json: ticket, status: :created
+    @ticket = Ticket.create(ticket_params)
+    render json: @ticket, status: :created
   end
 
 

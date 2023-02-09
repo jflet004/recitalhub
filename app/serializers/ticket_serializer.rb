@@ -1,11 +1,5 @@
 class TicketSerializer < ActiveModel::Serializer
-  attributes :id, :price, :quantity, :user_id, :recital_id, :recital_info
-  # has_one :recital
-
-  def recital_info
-
-    {id: object.id, title: object.recital.title, quantity: object.quantity}
-  end
-
-
+  attributes :id, :price, :quantity
+  belongs_to :user, serializer: TicketUserSerializer
+  belongs_to :recital, serializer: TicketRecitalSerializer
 end

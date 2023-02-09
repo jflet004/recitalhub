@@ -7,4 +7,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  def make_admin
+    self.update(admin: true)
+  end
+
 end

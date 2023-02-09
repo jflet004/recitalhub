@@ -52,7 +52,7 @@ const RecitalDetails = ({ deleteRecital }) => {
       quantity: quantity
     }
 
-    fetch(`/tickets/new`, {
+    fetch(`/tickets`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(ticket)
@@ -88,7 +88,7 @@ const RecitalDetails = ({ deleteRecital }) => {
       <h3>Students Performing:</h3>
       {recital.students.map(student => <li key={student.id}>{student.name}</li>)}
       <br />
-      <label>Quantity:</label> <input type="number" min="1" max="20" value={quantity} onChange={handleQuantityChange} />
+      <label>Quantity:</label> <input type="number" min="1" max="5" value={quantity} onChange={handleQuantityChange} />
       {recital.tickets_left > 0 ? <button onClick={handleBuyClick}>Buy Tickets</button> : "Sold Out"}
       {currentUser.admin ? <button className='delete-btn' onClick={handleDelete}>Delete</button> : null}
       <br />

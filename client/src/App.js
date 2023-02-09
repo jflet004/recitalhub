@@ -14,8 +14,8 @@ import './App.css';
 
 function App() {
 
-  const [recitals, setRecitals] = useState([])
   const [loading, setLoading] = useState(true)
+  const [recitals, setRecitals] = useState([])
 
   useEffect(() => {
     fetch("/recitals")
@@ -26,29 +26,20 @@ function App() {
   }, [])
 
 
-  const addRecital = recital => setRecitals(active => [...active, recital])
+  const addRecital = recitalList => setRecitals(newRecital => [...newRecital, recitalList])
 
-  function handleDeleteSpice(deletedRecital) {
+  const handleDeleteRecital = deletedRecital =>
     setRecitals((recitals) =>
       recitals.filter((recital) => recital.id !== deletedRecital.id)
     );
-  }
 
-  // const deleteRecital = id => setRecitals(active => active.filter(recital => recital.id !== id))
-
-  const updateRecital = selectedRecital => setRecitals(active => {
-    return active.map(recital => {
-      if (recital.id === selectedRecital.id) {
-        return selectedRecital
-      } else {
-        return recital
-      }
+  const updateRecital = newRecitalDetails => setRecitals(currentRecitalData => {
+    currentRecitalData.map(recitalData => {
+      return recitalData.id === newRecitalDetails.id ? newRecitalDetails : recitalData
     })
   })
 
   if (loading) return <h1>Loading</h1>
-
-
 
   return (
     <UserProvider>
@@ -57,7 +48,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/recitals" element={<RecitalList recitals={recitals} />} />
-          <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={handleDeleteSpice} />} />
+          <Route path="/recitals/:id" element={<RecitalDetails deleteRecital={handleDeleteRecital} />} />
           <Route path="/recitals/new" element={<NewRecitalForm addRecital={addRecital} />} />
           <Route path="/recitals/:id/edit" element={<UpdateRecital updateRecital={updateRecital} />} />
           <Route path="/profile" element={<ProfilePage />} />

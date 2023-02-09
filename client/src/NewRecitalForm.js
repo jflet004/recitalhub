@@ -22,7 +22,7 @@ const NewRecitalForm = ({ addRecital }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    fetch("/recitals/new", {
+    fetch("/recitals", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

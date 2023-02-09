@@ -13,38 +13,30 @@ const NavBar = () => {
       method: "DELETE"
     })
     setCurrentUser(null)
-    navigate('/')
+    navigate('/login')
   }
 
-  if (!currentUser || currentUser.error) {
-    return (
-      <div className='topnav'>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/recitals">Upcoming Recitals</NavLink>
-        <NavLink to="/signup">Signup</NavLink>
-        <NavLink to="/login">Login</NavLink>
-      </div>
-    )
-  } else if (currentUser.admin) {
-    return (
-      <div className='topnav'>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/recitals">Upcoming Recitals</NavLink>
-        <NavLink to="/recitals/new">Add Recital</NavLink>
-        <NavLink to="/profile">My Profile</NavLink>
-        <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
-      </div>
-    )
-  } else {
-    return (
-      <div className='topnav'>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/recitals">Upcoming Recitals</NavLink>
-        <NavLink to="/profile">My Profile</NavLink>
-        <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
-      </div>
-    )
-  }
+  return (
+    <div className='topnav'>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/recitals">Upcoming Recitals</NavLink>
+      {!currentUser || currentUser.error ? (
+        <>
+          <NavLink to="/signup">Signup</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </>
+      ) : (
+        <>
+          {currentUser.admin ? (
+            <NavLink to="/recitals/new">Add Recital</NavLink>
+          ) : null}
+          <NavLink to="/profile">My Profile</NavLink>
+          <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
+        </>
+      )}
+    </div>
+  )
+  
 
 }
 
