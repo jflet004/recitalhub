@@ -32,7 +32,7 @@ const NewRecitalForm = ({ addRecital }) => {
       .then(r => {
         if (r.ok) {
           r.json().then(addRecital)
-          navigate('/recitals')
+          navigate('/upcoming-recitals')
         } else {
           r.json().then(data => setErrors(data.errors))
         }

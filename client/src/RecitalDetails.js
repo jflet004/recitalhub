@@ -37,7 +37,7 @@ const RecitalDetails = ({ deleteRecital }) => {
       .then(r => {
         if (r.ok) {
           deleteRecital(recital)
-          navigate('/recitals')
+          navigate('/upcoming-recitals')
         } else {
           r.json().then(data => console.log(data))
         }
