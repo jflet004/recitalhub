@@ -1,5 +1,6 @@
 class Recital < ApplicationRecord
   validates :title, presence: true, uniqueness: true
+  validates :date, presence: true
   validates :description, presence: true, uniqueness: true
 
   has_many :students

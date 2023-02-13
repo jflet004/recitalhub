@@ -9,6 +9,8 @@ const NewRecitalForm = ({ addRecital }) => {
   const [errors, setErrors] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
+    date: "",
+    price: "",
     description: "",
     capacity: "",
     img_url: "",
@@ -54,7 +56,23 @@ const NewRecitalForm = ({ addRecital }) => {
             onChange={handleChange}
           />
           <br />
-
+          <label>Date</label>
+          <br />
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+          />
+          <br />
+          <label>Price</label>
+          <br />
+          <input
+            type="float"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+          />
           <br />
           <label>Description</label>
           <br />

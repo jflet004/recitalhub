@@ -9,6 +9,8 @@ const UpdateRecital = ({ updateRecital }) => {
   const [errors, setErrors] = useState([])
   const [formData, setFormData] = useState({
     title: "",
+    date: "",
+    price: "",
     description: "",
     capacity: "",
     img_url: ""
@@ -19,6 +21,8 @@ const UpdateRecital = ({ updateRecital }) => {
       .then(r => r.json())
       .then(data => setFormData({
         title: data.title,
+        date: data.date,
+        price: data.price,
         description: data.description,
         capacity: data.capacity,
         img_url: data.img_url
@@ -65,6 +69,20 @@ const UpdateRecital = ({ updateRecital }) => {
           type="text"
           name="title"
           value={formData.title}
+          onChange={handleChange}
+        />
+        <label>Date</label>
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+        />
+        <label>Price</label>
+        <input
+          type="float"
+          name="price"
+          value={formData.price}
           onChange={handleChange}
         />
         <label>Description</label>

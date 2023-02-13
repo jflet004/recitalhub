@@ -8,6 +8,7 @@ const RecitalDetails = ({ deleteRecital }) => {
 
   const [recital, setRecital] = useState([])
   const [quantity, setQuantity] = useState(1)
+  const [pricing, setPricing] = useState(0)
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState([])
 
@@ -20,6 +21,7 @@ const RecitalDetails = ({ deleteRecital }) => {
       .then(r => r.json())
       .then(data => {
         setRecital(data)
+        setPricing(data.price)
         setErrors(data.error)
       })
       .catch(error => alert(error))
@@ -27,7 +29,7 @@ const RecitalDetails = ({ deleteRecital }) => {
 
   }, [params.id])
 
-  const { id, title, description } = recital
+  const { id, title, price, description, date } = recital
 
 
   const handleDelete = () => {
@@ -48,7 +50,7 @@ const RecitalDetails = ({ deleteRecital }) => {
     const ticket = {
       recital_id: id,
       user_id: currentUser.id,
-      price: 30.50,
+      price: price,
       quantity: quantity
     }
 
@@ -68,12 +70,13 @@ const RecitalDetails = ({ deleteRecital }) => {
   }
 
   const handleQuantityChange = e => {
-    if (e.target.value <= recital.tickets_left) {
-      setQuantity(e.target.value)
-    } else if (recital.tickets_left === 0) {
-      alert('No more tickets available')
+    const ticketsLeft = recital.tickets_left;
+    const requestedTickets = e.target.value;
+    
+    if (requestedTickets <= ticketsLeft) {
+      setQuantity(requestedTickets);
     } else {
-      alert(`Only ${e.target.value - 1} tickets available`)
+      alert(`Only ${ticketsLeft} tickets available`);
     }
   }
 
@@ -83,6 +86,8 @@ const RecitalDetails = ({ deleteRecital }) => {
   return (
     <div className='details'>
       <h1>{title}</h1>
+      <p>{date}</p>
+      <h3>${pricing} per ticket</h3>
       {currentUser.admin ? <Link to={`/recitals/${id}/edit`}> Update</Link> : null}
       <p>{description}</p>
       <h3>Students Performing:</h3>
