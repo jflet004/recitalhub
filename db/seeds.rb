@@ -7,9 +7,13 @@ Ticket.destroy_all
 puts "Seeding!"
 
 r1 = Recital.create!(title: "Piano", date: Date.new(2023, 11, 22), price: 10.5, description: "Get ready for a musical treat! Our Kids Piano Recital is a showcase of young and talented musicians, who will be playing beautiful pieces on the piano. The kids have been working hard to perfect their skills and are eager to share their love for music with you. They will be performing a variety of pieces, from classical to contemporary, that are sure to captivate and inspire. Not only will the kids be playing, but there will also be refreshments available and a chance to meet and greet with the performers after the show. Bring your family and friends to support these young musicians and experience an evening of music, fun, and inspiration!", img_url: "images/piano.jpg", capacity: 30)
+puts "Created Piano"
 r2 = Recital.create!(title: "Guitar", date: Date.new(2023, 07, 12), price: 15, description: "Come join us for a musical extravaganza! Our Kids Guitar Recital is an event for young and talented musicians to showcase their skills on the guitar. This recital is an opportunity for kids to show off their hard work and dedication to the world of music. They'll be playing a variety of pieces, ranging from classical to contemporary. Not only will the kids be performing, but there will also be refreshments and a chance to meet and greet with the performers after the show. Bring your family and friends to support and encourage the young musicians! This will be a fun-filled and musical evening that you don't want to miss! ", capacity: 30, img_url: "images/guitar.jpg")
+puts "Created Guitar"
+
 r3 = Recital.create!(title: "Cello", date: Date.new(2023, 02, 14), price: 11.3, description: "Attention all music lovers! Get ready to immerse yourself in the mesmerizing sound of the cello at our upcoming recital. Our talented cellists have been working hard to bring you an evening of beautiful music, and you won't want to miss it! Whether you are a fan of the cello, classical music, or just appreciate the beauty of live performance, this is an event not to be missed. Our cellists are ready to share their love of music with you, and we guarantee that you will leave the recital with a sense of inspiration and wonder. ", img_url: "images/cello.jpg", capacity: 30)
 
+puts "Created Cello"
 u1 = User.create(username: "admin", password:"eagles40", admin:true)
 
 s1 = Student.create(name: "Emma Watson", age: 12, recital_id: r1.id )
