@@ -12,7 +12,7 @@ const ProfilePage = () => {
       .then(data => {
         setUser(data)
       })
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
       .finally(() => setLoading(false))
   }, [])
 

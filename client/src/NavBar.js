@@ -27,10 +27,10 @@ const NavBar = () => {
         </>
       ) : (
         <>
-          <NavLink to="/profile">My Profile</NavLink>
           {currentUser.admin ? (
             <NavLink to="/new-recital">Add Recital</NavLink>
-          ) : null}
+            ) : null}
+            <NavLink to="/profile">My Profile</NavLink>
           <button className='logout-btn' onClick={handleLogoutClick}>Logout</button>
         </>
       )}

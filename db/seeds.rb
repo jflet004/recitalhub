@@ -1,3 +1,5 @@
+puts "Deleting previous seeds"
+
 Recital.destroy_all
 Student.destroy_all
 
@@ -16,5 +18,6 @@ s6 = Student.create(name: "George Clooney", age: 14, recital_id: r2.id )
 s7 = Student.create(name: "Bradley Cooper", age: 12, recital_id: r3.id )
 s8 = Student.create(name: "Sandra Bullock", age: 13, recital_id: r3.id )
 s9 = Student.create(name: "Johnny Depp", age: 14, recital_id: r3.id )
+
 
 puts "Done seeding!"

@@ -21,7 +21,7 @@ function App() {
     fetch("/recitals")
       .then(r => r.json())
       .then(recitals => setRecitals(recitals))
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
       .finally(() => setLoading(false))
   }, [])
 

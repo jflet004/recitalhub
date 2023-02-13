@@ -54,7 +54,7 @@ const NewRecitalForm = ({ addRecital }) => {
             onChange={handleChange}
           />
           <br />
-    
+
           <br />
           <label>Description</label>
           <br />
@@ -73,15 +73,15 @@ const NewRecitalForm = ({ addRecital }) => {
             value={formData.capacity}
             onChange={handleChange}
           />
-        <br />
+          <br />
           <label>Image URL</label>
-        <br />
+          <br />
           <input type="tex" value={formData.img_url} name="img_url" onChange={handleChange} />
           <br />
           <input type="submit" value="Add Recital" />
         </form>
         <br />
-        {errors ? errors : null}
+        {errors ? errors.map(error => <li>{error}</li>) : null}
       </div>
     )
 

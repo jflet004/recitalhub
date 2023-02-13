@@ -12,7 +12,7 @@ function UserProvider({ children }) {
       .then(r => r.json())
       .then(data => {
         setCurrentUser(data)
-        console.log("Current User:", data.username)
+        console.log("Current User:", data)
       })
       .catch(error => alert(error))
       .finally(() => setLoading(false))
